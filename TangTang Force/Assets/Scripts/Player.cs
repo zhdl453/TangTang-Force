@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector2 inputVec;
+    Rigidbody2D rigid;
 
-    // Update is called once per frame
+    void Awake()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+    }
     void Update()
     {
-        
+        inputVec.x = Input.GetAxis("Horizontal");
+        inputVec.y = Input.GetAxis("Vertical");
     }
 }

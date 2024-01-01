@@ -9,12 +9,14 @@ public class Player : MonoBehaviour
     public float speed;
     Rigidbody2D rigid;
     SpriteRenderer spriter;
+    Animator anim;
 
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -30,9 +32,10 @@ public class Player : MonoBehaviour
     //프레임이 종료 되기 전 실행되는 생명주기 함수
     void LateUpdate()
     {
+        anim.SetFloat("Speed", inputVec.magnitude);//벡터의 순수한 크기값
         if (inputVec.x != 0)
         {
-            spriter.flipX = inputVec.x < 0; //bool타입으로 넣어주는거임
+            spriter.flipX = inputVec.x < 0; //bool타입으로 넣어주는거임. 왼쪽으로 가면 x값 -1이니까 true, 오른쪽은 1이니까 false 반환
         }
     }
 

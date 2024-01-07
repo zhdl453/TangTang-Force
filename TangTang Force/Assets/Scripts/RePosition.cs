@@ -4,6 +4,11 @@ using UnityEngine;
 // 이쁜 코딩을 위해 플레이어에 대한 정보는 게임매니저 클래스를 통해 여기로 전달해줄거임
 public class RePosition : MonoBehaviour
 {
+    Collider2D coll;
+    void Awake()
+    {
+        coll = GetComponent<Collider2D>();
+    }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.CompareTag("Area")) return;
@@ -32,6 +37,10 @@ public class RePosition : MonoBehaviour
                 }
                 break;
             case "Enemy":
+                if (coll.enabled)
+                {
+                    transform.Translate(playerDir * 20 + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0)); //플레이어의 방향 * 맵의 조금 멀리떨어진 카메라에서 안보이게 조금만
+                }
                 break;
         }
     }

@@ -5,16 +5,20 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
+    public float health;
+    public float maxHealth;
+    public RuntimeAnimatorController[] animCon; //스피드에 따라 걸음애니도 바뀌어야함
     public Rigidbody2D target;
     bool isLive;
     Rigidbody2D rigid;
     SpriteRenderer spriter;
+    Animator anim;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
-        isLive = true;
+        anim = GetComponent<Animator>();
     }
     //몬스터가 주인공 따라가게 하는 로직
     void FixedUpdate()
@@ -30,5 +34,19 @@ public class Enemy : MonoBehaviour
     void LateUpdate()
     {
         spriter.flipX = target.position.x < rigid.position.x;
+    }
+    void OnEnable() //몬스터 클론이 생성되어 활성화되면! 이렇게 플레이어를 target변수에 담아줄거임(초기화해주기)
+    {
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        isLive = true;
+        health = maxHealth;
+    }
+
+    public void Init(SpawnData data)
+    {
+        anim.runtimeAnimatorController = animCon[data.spriteType];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = data.health;
     }
 }

@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 41012161}
   - component: {fileID: 41012162}
   - component: {fileID: 41012163}
+  - component: {fileID: 41012164}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -319,6 +320,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &41012164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41012156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2c0eab8979b4e788dda8dd289e49bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanRange: 5
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  nearestTarget: {fileID: 0}
 --- !u!1 &148794626
 GameObject:
   m_ObjectHideFlags: 0
@@ -4793,7 +4811,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 7.740741
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
